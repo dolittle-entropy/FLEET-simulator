@@ -1,0 +1,46 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 5,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "header"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "header/header": [
+            2,
+            "line",
+            [
+                " Copyright (c) the FLEET project. All rights reserved.",
+                " Licensed under the MIT license. See LICENSE file in the project root for full license information"
+            ],
+            1
+        ]
+    }
+}
