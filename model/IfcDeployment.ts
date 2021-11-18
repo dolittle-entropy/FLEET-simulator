@@ -17,6 +17,7 @@ export interface Deployment{
     runtime: Version;
     microService: Version[];
     config: object;
+    sla: object;
 }
 
 export interface Developer{
