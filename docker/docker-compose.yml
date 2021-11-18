@@ -6,8 +6,17 @@ services:
     ports:
       - 7474:7474
       - 7687:7687
+    environment:
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*,algo.*
+      - NEO4J_dbms_security_procedures_whitelist=apoc.*,algo.*
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_dbms_shell_enabled=true
+      - NEO4JLABS_PLUGINS=["apoc"]
     volumes:
       - neo4jdata:/data
+      - neo4jplugins:/plugins
       - ./logs:/logs
+      - ./import:/import
 volumes:
   neo4jdata:
+  neo4jplugins:
