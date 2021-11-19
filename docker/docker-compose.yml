@@ -12,11 +12,10 @@ services:
       - NEO4J_apoc_import_file_enabled=true
       - NEO4J_dbms_shell_enabled=true
       - NEO4JLABS_PLUGINS=["apoc"]
+      - NEO4J_AUTH=neo4j/fleet
     volumes:
-      - neo4jdata:/data
-      - neo4jplugins:/plugins
-      - ./logs:/logs
-      - ./import:/import
-volumes:
-  neo4jdata:
-  neo4jplugins:
+      - ./neo4j/data:/data
+      - ./neo4j/plugin:/plugins
+      - ./neo4j/logs:/logs
+      - ./neo4j/import:/import
+
