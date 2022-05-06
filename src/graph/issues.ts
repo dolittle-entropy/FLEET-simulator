@@ -2,8 +2,8 @@ import { executeQuery } from "./dbconn";
 
 export async function getNearestIssues(artefact:string, version:string){
     let query = `
-        match (a:Artefact {name: $artefact})--(v:Version {label:$version})-[*2..2]-(issue:Issue) 
-        return a, v, issue
+        match (aretefact:Artefact {name: $artefact})--(version:Version {label:$version})-[*2..2]-(issue:Issue) 
+        return issue
     `
     let result = await executeQuery(
         query,
@@ -14,4 +14,12 @@ export async function getNearestIssues(artefact:string, version:string){
     )
 
     return result;
+}
+
+export async function getArtefactsWithIssues(){
+    let query = `
+        match (artefact:Artefact)--(version:Version)--()--(issue:Issue)
+        return artefact.name, version.label, issue.type, issue.time
+    `
+    return await executeQuery(query);
 }

@@ -11,3 +11,10 @@ export async function executeQuery(query: string, parameters?: any): Promise<Rec
     session.close()
     return result.records.map(i => i.toObject() )
 }
+
+export async function executeCommand(query: string, parameters?: any): Promise<Record<any, any>>{
+    let session = driver.session()
+    let result: QueryResult = await session.run(query, parameters)
+    session.close()
+    return result.summary.updateStatistics
+}
