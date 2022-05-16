@@ -7,7 +7,7 @@ export async function newDeployment(dlversion:string, ...artefacts: {artefact:st
         merge (dlv)<-[:RuntimeVersion]-(:Deployment {number: $dnumber, created: date($date)})-[:ArtefactVersion]->(v)
     `
     let result = await executeQuery("match (a:Deployment) return count(a) as n");
-    let total = result[0].n.low
+    let total = result[0].n.low | 0
     let mergeResult = await executeCommand(
         query,
         {
@@ -21,4 +21,6 @@ export async function newDeployment(dlversion:string, ...artefacts: {artefact:st
     //console.log(result)
     return mergeResult
 }
+
+
 
