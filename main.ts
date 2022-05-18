@@ -7,6 +7,7 @@ import { listAllDeployments } from "./src/graph/view"
 import { getArtefactsWithIssues, getNearestIssues } from "./src/graph/issues"
 import { getActiveArtefactVersionsAt, getUsedArtefactVersions } from "./src/graph/artefacts";
 import { newDeployment } from "./src/graph/revise";
+import { pageRank } from "./src/graph/graph-algo";
 
 console.log('Main entrance');
 
@@ -25,7 +26,8 @@ async function testDeployment(){
     // let result = await getUsedArtefactVersions()
     // let result = await getActiveArtefactVersionsAt('2021-02-02')
     // let result = await getArtefactsWithIssues()
-    let result = await testDeployment()
+    //let result = await testDeployment()
+    let result = await pageRank()
     console.log(result)
     await driver.close()
 })()
