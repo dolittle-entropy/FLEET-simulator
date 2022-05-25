@@ -14,6 +14,12 @@ export async function projectDeployGraph(){
 
 }
 
+/**
+ * List the most "important" nodes (artefacts), which has most intensely used
+ * by "important" deployments.
+ * See: https://neo4j.com/docs/graph-data-science/current/algorithms/page-rank/ 
+ * @returns node name (only applies to artefacts) and importance score
+ */
 export async function pageRank(){
     try{
         let projectResult = await projectDeployGraph()

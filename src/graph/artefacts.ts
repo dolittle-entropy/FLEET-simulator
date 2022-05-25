@@ -18,9 +18,10 @@ export async function getUsedArtefactVersions(){
  * @returns 
  */
 export async function getActiveArtefactVersionsAt(date: string){
-    let query = `
+    const query = `
         match (a: Artefact)--(v: Version)--(d)
-        where d.created <= date($datepoint) and ( (d.released is null) or (d.release >= date($datepoint)))
+        where d.created <= date($datepoint) and 
+              ((d.released is null) or (d.release >= date($datepoint)))
         return a.name, v.label, d
     `
     return await executeQuery(query, {datepoint: date})
