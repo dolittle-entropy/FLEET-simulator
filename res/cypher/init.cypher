@@ -19,7 +19,12 @@ create (drv4:Version {label:'4.0', released:date('2021-05-01')})-[:VersionOf]->(
 create (drv5:Version {label:'5.0', released:date('2021-07-15')})-[:VersionOf]->(runtime)
 create (mongo50:Version {label:'5.0', released:date('2021-07-13')})-[:VersionOf]->(mongo)
 create (mongo44:Version {label:'4.4', released:date('2020-09-09')})-[:VersionOf]->(mongo)
-create (ms1v1)<-[:ArtefactVersion]-(d1:Deployment {number:1, created:date('2021-01-02'), retired:date('2021-02-03')})-[:RuntimeVersion]->(drv1)
+create (ms1v1)<-[:ArtefactVersion]-(d1:Deployment {
+    number:1, 
+    created:date('2021-01-02'), 
+    retired:date('2021-02-03'),
+    admin: 'alice'
+    })-[:RuntimeVersion]->(drv1)
 create (ms1v1)<-[:ArtefactVersion]-(d2:Deployment {number:2, created:date('2021-02-01'), retired:date('2021-02-08')})-[:RuntimeVersion]->(drv2)
 create (ms1v2)<-[:ArtefactVersion]-(d3:Deployment {number:3, created:date('2021-02-08')})-[:RuntimeVersion]->(drv2)
 create (ms2v1)<-[:ArtefactVersion]-(d4:Deployment {number:4, created:date('2021-02-05')})-[:RuntimeVersion]->(drv2)

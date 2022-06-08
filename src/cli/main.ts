@@ -2,6 +2,7 @@ import {program} from "commander";
 import { getActiveArtefactVersionsAt, getUsedArtefactVersions } from "../graph/artefacts";
 import { pageRank } from "../graph/graph-algo";
 import { getArtefactsWithIssues } from "../graph/issues";
+import { cleanup, createMockupGraph } from "../graph/util";
 
 //const program = new Command();
 
@@ -29,6 +30,11 @@ program.command('page-rank')
         console.log(await pageRank())
     })
    
+program.command('clean')
+    .action(cleanup)
+
+program.command('mockup')
+    .action(createMockupGraph)
     
 program.parse(process.argv)
 
