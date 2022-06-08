@@ -3,7 +3,7 @@ import { executeQuery } from "./dbconn";
 export async function getUsedArtefactVersions(){
     let query = `
         match (a:Artefact)--(v:Version)--()--(dv:Version)--(dolittle:DolittleRuntime) 
-        return a.name, v.label, dv.label
+        return a.name as artefact, v.label as version, dv.label as runtime-version
     `
     let result = await executeQuery(
         query
@@ -21,8 +21,8 @@ export async function getActiveArtefactVersionsAt(date: string){
     const query = `
         match (a: Artefact)--(v: Version)--(d)
         where d.created <= date($datepoint) and 
-              ((d.released is null) or (d.release >= date($datepoint)))
-        return a.name, v.label, d
+              ((d.retired is null) or (d.retired >= date($datepoint)))
+        return a.name as artefact, v.label as version, d.number as deployment
     `
     return await executeQuery(query, {datepoint: date})
 }

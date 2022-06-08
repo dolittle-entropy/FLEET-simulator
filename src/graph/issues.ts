@@ -17,7 +17,7 @@ export async function getNearestIssues(artefact:string, version:string){
 }
 
 export async function getArtefactsWithIssues(){
-    let query = `
+    const query = `
         match (artefact:Artefact)--(version:Version)--()--(issue:Issue)
         return artefact.name, version.label, issue.type, issue.time
     `

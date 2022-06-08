@@ -10,7 +10,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "start": "ts-node main.ts"
+    "start": "ts-node src/cli/main.ts"
   },
   "devDependencies": {
     "@types/node": "^16.11.6",
@@ -22,6 +22,7 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
+    "commander": "^9.3.0",
     "neo4j-driver": "^4.4.0"
   }
 }
