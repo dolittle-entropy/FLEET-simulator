@@ -1,4 +1,7 @@
+#!/usr/bin/env ts-node
+
 import {program} from "commander";
+import { importReportFile, importReportFileNoReturn } from "../connector/parse-record";
 import { getActiveArtefactVersionsAt, getUsedArtefactVersions } from "../graph/artefacts";
 import { pageRank } from "../graph/graph-algo";
 import { getArtefactsWithIssues } from "../graph/issues";
@@ -7,7 +10,10 @@ import { cleanup, createMockupGraph } from "../graph/util";
 //const program = new Command();
 
 program
-    .command('used-artefact', 'handle artefacts')
+    .name('main')
+    .version('1.0.0')
+    .command('artefact', 'handle artefacts')
+    .command('list', 'just print list')
     
 program.command('used-versions')
     .action(async (cmd)=>{
@@ -35,7 +41,10 @@ program.command('clean')
 
 program.command('mockup')
     .action(createMockupGraph)
+
+program.command('import-file')
+    .action(importReportFileNoReturn)
     
-program.parse(process.argv)
+program.parseAsync(process.argv)
 
 

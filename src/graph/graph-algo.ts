@@ -1,11 +1,14 @@
 import { executeQuery } from "./dbconn";
 
 export async function projectDeployGraph(){
+
+    await executeQuery('call gds.graph.drop("deploygraph") yield graphName');
+
     const query = `
         call gds.graph.project(
             "deploygraph", 
-            ['Deployment', 'Version', 'DolittleRuntime', 'Artefact'], 
-            ['ArtefactVersion', 'RuntimeVersion', 'VersionOf']
+            ['Deployment', 'DeploymentInstance', 'RuntimeVersion', 'ArtifactVersion', 'Artifact', 'Customer'], 
+            ['InstanceOf', 'UsesArtifact', 'VersionOf','DevelopedBy']
         )
     `
 
@@ -30,7 +33,7 @@ export async function pageRank(){
     let query = `
         CALL gds.pageRank.stream('deploygraph')
         YIELD nodeId, score
-        RETURN gds.util.asNode(nodeId).name AS name, score
+        RETURN gds.util.asNode(nodeId).name AS name, gds.util.asNode(nodeId).uid AS uid, score
         ORDER BY score DESC, name ASC
     `
     let result = executeQuery(query)
