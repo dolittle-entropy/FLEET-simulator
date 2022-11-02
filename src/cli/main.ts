@@ -4,6 +4,7 @@ import {program} from "commander";
 import { importReportFile, importReportFileNoReturn } from "../connector/parse-record";
 import { getActiveArtefactVersionsAt, getUsedArtefactVersions } from "../graph/artefacts";
 import { pageRank } from "../graph/graph-algo";
+import { experiment } from "../graph/graphnode";
 import { getArtefactsWithIssues } from "../graph/issues";
 import { cleanup, createMockupGraph } from "../graph/util";
 
@@ -44,6 +45,9 @@ program.command('mockup')
 
 program.command('import-file')
     .action(importReportFileNoReturn)
+
+// program.command('nodegraph')
+//     .action(experiment)
     
 program.parseAsync(process.argv)
 

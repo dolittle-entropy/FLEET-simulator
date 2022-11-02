@@ -1,7 +1,7 @@
 import neo4j, { QueryResult, Session, Transaction } from 'neo4j-driver'
 
 export const driver = neo4j.driver(
-    'neo4j://localhost',
+    'neo4j://neo4j', //'localhost' when not working on docker
     neo4j.auth.basic('neo4j', 'fleet')
 )
 

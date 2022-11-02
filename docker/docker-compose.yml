@@ -19,4 +19,19 @@ services:
       - ./neo4j/plugin:/plugins
       - ./neo4j/logs:/logs
       - ./neo4j/import:/import
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    volumes:
+      - grafana-data:/var/lib/grafana
+  neoapi:
+    build: ..
+    ports:
+      - "5000:5000"
+    container_name: neoapi
+volumes:
+  grafana-data:
+
 
